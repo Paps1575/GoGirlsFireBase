@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "411451726843",
+    "project_id": "go-girls-abc5f",
+    "storage_bucket": "go-girls-abc5f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:411451726843:android:b221e7d1f12e59d1d0095e",
+        "android_client_info": {
+          "package_name": "com.uttt.gogirls"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIAhJ3UadteuhHLafHHHbZJZlIsLW-oi8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
