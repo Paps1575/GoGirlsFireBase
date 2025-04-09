@@ -15,6 +15,7 @@ import com.uttt.gogirls.viewmodel.AuthViewModel
 @Composable
 fun LoginScreen(
     onLoginSuccess: () -> Unit,
+    onNavigateToRegister: () -> Unit,
     authViewModel: AuthViewModel
 ) {
     val context = LocalContext.current
@@ -84,6 +85,12 @@ fun LoginScreen(
         errorMessage?.let {
             Spacer(modifier = Modifier.height(8.dp))
             Text(it, color = MaterialTheme.colorScheme.error)
+        }
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        TextButton(onClick = onNavigateToRegister) {
+            Text("¿No tienes cuenta? Regístrate")
         }
     }
 }

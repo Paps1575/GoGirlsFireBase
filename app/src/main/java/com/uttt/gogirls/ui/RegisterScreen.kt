@@ -19,6 +19,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun RegisterScreen(
     onRegisterSuccess: () -> Unit,
+    onNavigateToLogin: () -> Unit, // ✅ Nuevo parámetro para regresar al login
     authViewModel: AuthViewModel
 ) {
     val context = LocalContext.current
@@ -108,7 +109,6 @@ fun RegisterScreen(
                         errorMessage = null
                         Toast.makeText(context, "¡Registro exitoso!", Toast.LENGTH_SHORT).show()
 
-                        // Le damos un mini delay para que se vea el Toast antes de cambiar pantalla
                         coroutineScope.launch {
                             delay(500)
                             onRegisterSuccess()
@@ -127,6 +127,13 @@ fun RegisterScreen(
         errorMessage?.let {
             Spacer(modifier = Modifier.height(8.dp))
             Text(it, color = MaterialTheme.colorScheme.error)
+        }
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        // ✅ Botón para ir a login
+        TextButton(onClick = onNavigateToLogin) {
+            Text("¿Ya tienes cuenta? Inicia sesión")
         }
     }
 }

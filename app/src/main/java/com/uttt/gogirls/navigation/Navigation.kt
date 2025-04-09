@@ -1,13 +1,15 @@
 package com.uttt.gogirls.navigation
 
 import android.util.Log
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.uttt.gogirls.ui.*
+import com.uttt.gogirls.ui.home.HistorialConductoraScreen
+import com.uttt.gogirls.ui.home.HistorialPasajeraScreen
 import com.uttt.gogirls.ui.home.HomeConductoraScreen
 import com.uttt.gogirls.ui.home.HomePasajeraScreen
 import com.uttt.gogirls.viewmodel.AuthViewModel
@@ -42,6 +44,9 @@ fun AppNavigation(navController: NavHostController, authViewModel: AuthViewModel
                                 Log.e("Navigation", "Error leyendo Firestore: ${it.message}")
                             }
                     }
+                },
+                onNavigateToRegister = {
+                    navController.navigate("register")
                 }
             )
         }
@@ -50,6 +55,11 @@ fun AppNavigation(navController: NavHostController, authViewModel: AuthViewModel
             RegisterScreen(
                 authViewModel = authViewModel,
                 onRegisterSuccess = {
+                    navController.navigate("login") {
+                        popUpTo("register") { inclusive = true }
+                    }
+                },
+                onNavigateToLogin = { // ✅ Agregado para permitir regresar al login
                     navController.navigate("login") {
                         popUpTo("register") { inclusive = true }
                     }
@@ -64,5 +74,13 @@ fun AppNavigation(navController: NavHostController, authViewModel: AuthViewModel
         composable("home_conductora") {
             HomeConductoraScreen(navController)
         }
+        composable("historial_pasajera") {
+            HistorialPasajeraScreen(navController)
+        }
+        composable("historial_conductora") {
+            HistorialConductoraScreen(navController)
+        }
+
+
     }
 }
